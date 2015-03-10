@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Marcelo Siero, reformatted version of cheat sheet mostly from this site [1]">
+  <title>CoffeeScript Quick Reference (coffeescript.org)</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" href="./PANDOC/pandoc.css">
+</head>
+<body>
+<header>
+<h1 class="title">CoffeeScript Quick Reference (coffeescript.org)</h1>
+<h2 class="author">Marcelo Siero, reformatted version of cheat sheet mostly from this site <a href="#ref1">[1]</a></h2>
+</header>
+<nav id="TOC">
+<ul>
+<li><a href="#bootstrapping-your-knowledge">Bootstrapping your knowledge <a href="#TOC">^</a></a></li>
+<li><a href="#general">General <a href="#TOC">^</a></a></li>
+<li><a href="#functions">Functions <a href="#TOC">^</a></a></li>
+<li><a href="#objects-and-arrays">Objects and arrays <a href="#TOC">^</a></a></li>
+<li><a href="#lexical-scoping-and-variable-safety">Lexical Scoping and Variable Safety <a href="#TOC">^</a></a></li>
+<li><a href="#splats">Splats <a href="#TOC">^</a></a></li>
+<li><a href="#loops-and-comprehensions">Loops and Comprehensions <a href="#TOC">^</a></a></li>
+<li><a href="#trycatchfinally">Try/Catch/Finally <a href="#TOC">^</a></a></li>
+<li><a href="#if-else-unless-and-conditional-assignment">If, Else, Unless, and Conditional Assignment <a href="#TOC">^</a></a></li>
+<li><a href="#chained-comparisons">Chained Comparisons <a href="#TOC">^</a></a></li>
+<li><a href="#array-slicing-and-splicing-with-ranges">Array Slicing and Splicing with Ranges</a></li>
+<li><a href="#embedded-javascript">Embedded JavaScript <a href="#TOC">^</a></a></li>
+<li><a href="#everything-is-an-expression">Everything is an Expression <a href="#TOC">^</a></a></li>
+<li><a href="#operators-and-aliases">Operators and Aliases <a href="#TOC">^</a></a></li>
+<li><a href="#existentialclassesoperator">ExistentialClasses,Operator <a href="#TOC">^</a></a></li>
+<li><a href="#inheritance-and-super">Inheritance, and Super <a href="#TOC">^</a></a></li>
+<li><a href="#destructuring-assignment">Destructuring Assignment <a href="#TOC">^</a></a></li>
+<li><a href="#function-binding">Function binding <a href="#TOC">^</a></a></li>
+<li><a href="#switchwhenelse">Switch/When/Else <a href="#TOC">^</a></a></li>
+<li><a href="#string-interpolation-heredocs-and-block-comments">String Interpolation, Heredocs, and Block Comments <a href="#TOC">^</a></a></li>
+<li><a href="#extended-regular-expressions">Extended Regular Expressions <a href="#TOC">^</a></a></li>
+<li><a href="#aliases">Aliases <a href="#TOC">^</a></a></li>
+</ul>
+</nav>
+<p>% March 5, 2015.</p>
+<!-- Comments:
+    Add Table of Contents.
+    Add a way to introduce user comments.
+    Add a way to introduce sample code - in a viewable manner.
+    Do this for each of these languages.
+    Include - samples and test output.
+    Figure out how to do the same as in pynotebook
+      with vim ... how to implement some sort of
+      literateprogramming, literatetextbooks,
+      literatemath, etc.  Pandoc is a key to a lot
+      of things.
+    Could also provide easy links to Interactive 
+      HTML5 Edition of Smooth Coffee Script.
+-->
+
+<h1 id="bootstrapping-your-knowledge"><a href="#bootstrapping-your-knowledge">Bootstrapping your knowledge <a href="#TOC">^</a></a></h1>
+<ul>
+<li>Experiment with Interactive <a href="http://autotelicum.github.io/Smooth-CoffeeScript/interactive/interactive-coffeescript.html">CoffeeScript in the Browser</a></li>
+<li>See also Interactive <a href="http://eloquentjavascript.net/">Eloquent Javascript</a></li>
+<li>To compare to other languages click <a href="http://rosettacode.org/wiki/Language_Comparison_Table#Ruby">here</a></li>
+<li>You will also want to use the sites: <a href="http://js2.coffee">js2.coffee</a></li>
+</ul>
+<h1 id="general"><a href="#general">General <a href="#TOC">^</a></a></h1>
+<ul>
+<li>Whitespace is significant</li>
+<li>Ending a line will terminate expressions - no need to use semicolons</li>
+<li>Semicolons can be used to fit multiple expressions onto a single line</li>
+<li>Use indentation instead of curly braces { } to surround blocks of code in functions, if statements, switch, and try/catch</li>
+<li>Comments starts with # and run to the end of the line</li>
+</ul>
+<h1 id="functions"><a href="#functions">Functions <a href="#TOC">^</a></a></h1>
+<ul>
+<li>Functions are defined by an optional list of parameters in parentheses, an arrow, and an optional function body. The empty function looks like: -&gt;</li>
+<li>Mostly no need to use parentheses to invoke a function if it is passed arguments. The implicit call wraps forward to the end of the line or block expression.</li>
+<li>Functions may have default values for arguments. Override the default value by passing a non-null argument.</li>
+</ul>
+<h1 id="objects-and-arrays"><a href="#objects-and-arrays">Objects and arrays <a href="#TOC">^</a></a></h1>
+<ul>
+<li>Objects and arrays are similar to JavaScript</li>
+<li>When each property is listed on its own line, the commas are optional</li>
+<li>Objects may be created using indentation instead of explicit braces, similar to YAML</li>
+<li>Reserved words, like class, can be used as properties of an object without quoting them as strings</li>
+</ul>
+<h1 id="lexical-scoping-and-variable-safety"><a href="#lexical-scoping-and-variable-safety">Lexical Scoping and Variable Safety <a href="#TOC">^</a></a></h1>
+<ul>
+<li>Variables are declared implicitly when used (no var keyword).</li>
+<li>The compiler ensures that variables are declared within lexical scope. An outer variable is not redeclared within an inner function when it is in scope</li>
+<li>Using an inner variable can not shadow an outer variable, only refer to it. So avoid reusing the name of an external variable in a deeply nested function</li>
+<li>CoffeeScript output is wrapped in an anonymous function, making it difficult to accidentally pollute the global namespace</li>
+<li>To create top-level variables for other scripts, attach them as properties on window, or to exports in CommonJS. Use: <em>exports</em> ? <em>this</em></li>
+</ul>
+<h1 id="splats"><a href="#splats">Splats <a href="#TOC">^</a></a></h1>
+<ul>
+<li>Splats … can be used instead of the variable number of arguments object and are available for both function def inition and invocation</li>
+</ul>
+<h1 id="loops-and-comprehensions"><a href="#loops-and-comprehensions">Loops and Comprehensions <a href="#TOC">^</a></a></h1>
+<ul>
+<li>Comprehensions <em>for</em> … <em>in</em> work over arrays, objects, and ranges</li>
+<li>Comprehensions replace for loops, with optional when guard clauses and the value of the current array index: <em>for</em> value, index <em>in</em> array</li>
+<li>Array comprehensions are expressions, and can be returned and assigned</li>
+<li>Comprehensions may replace <em>each/forEach, map</em> or <em>select/filter</em></li>
+<li>Use a range when the start and end of a loop is known (integer steps)</li>
+<li>Use <em>by</em> to step in fixed-size increments</li>
+<li>When assigning the value of a comprehension to a variable, CoffeeScript collects the result of each iteration into an array</li>
+<li>Return null, undefined or true if a loop is only for side-effects</li>
+<li>To iterate over the key and value properties in an object, use of</li>
+<li>Use: for own key, value of object to iterate over the keys that are directly defined on an object</li>
+<li>The only low-level loop is the while loop. It can be used as an expression, returning an array containing the result of each iteration through the loop</li>
+<li>until is equivalent to while not</li>
+<li>loop is equivalent to while true</li>
+<li>The do keyword inserts a closure wrapper, forwards any arguments and invokes a passed function</li>
+</ul>
+<h1 id="trycatchfinally"><a href="#trycatchfinally">Try/Catch/Finally <a href="#TOC">^</a></a></h1>
+<ul>
+<li>try/catch statements are as in JavaScript (although expressions)</li>
+</ul>
+<h1 id="if-else-unless-and-conditional-assignment"><a href="#if-else-unless-and-conditional-assignment">If, Else, Unless, and Conditional Assignment <a href="#TOC">^</a></a></h1>
+<ul>
+<li>if/else can be written without paren theses and curly braces</li>
+<li>Multi-line conditionals are delimited by indentation</li>
+<li>if and unless can be used in postfix form i.e. at the end of the statement</li>
+<li>if statements can be used as expres sions. No need for ?:</li>
+</ul>
+<h1 id="chained-comparisons"><a href="#chained-comparisons">Chained Comparisons <a href="#TOC">^</a></a></h1>
+<ul>
+<li>Use a chained comparison to test if a value is within a range:</li>
+</ul>
+<blockquote>
+<p>minimum &lt; value &lt; maximum</p>
+</blockquote>
+<h1 id="array-slicing-and-splicing-with-ranges"><a href="#array-slicing-and-splicing-with-ranges">Array Slicing and Splicing with Ranges</a></h1>
+<ul>
+<li>Ranges can be used to extract slices of arrays</li>
+<li>With two dots [3..6], the range is inclusive (3, 4, 5, 6)</li>
+<li>With three dots [3…6], the range excludes the end (3, 4, 5)</li>
+<li>The same syntax can be used with assignment to replace a segment of an array with new values, splicing it</li>
+<li>Strings are immutable and can not be spliced</li>
+</ul>
+<h1 id="embedded-javascript"><a href="#embedded-javascript">Embedded JavaScript <a href="#TOC">^</a></a></h1>
+<ul>
+<li>Use backquotes `` to embed JavaScript code within CoffeeScript</li>
+</ul>
+<h1 id="everything-is-an-expression"><a href="#everything-is-an-expression">Everything is an Expression <a href="#TOC">^</a></a></h1>
+<ul>
+<li>Functions return their final value</li>
+<li>The return value is fetched from each branch of execution</li>
+<li>Return early from a function body by using an explicit return</li>
+<li>Variable declarations are at the top of the scope, so assignment can be used within expressions, even for variables that have not been seen before</li>
+<li>Statements, when used as part of an expression, are converted into expressions with a closure wrapper. This allows assignment of the result of a comprehension to a variable</li>
+<li>The following are not expressions:</li>
+</ul>
+<blockquote>
+<p><em>break, continue, and return</em></p>
+</blockquote>
+<h1 id="operators-and-aliases"><a href="#operators-and-aliases">Operators and Aliases <a href="#TOC">^</a></a></h1>
+<ul>
+<li>CoffeeScript compiles == into ===, and != into !==. There is no equivalent to the JavaScript == operator</li>
+<li>The alias is is equivalent to ===, and isnt corresponds to !==</li>
+<li>Logical operator aliases: and is &amp;&amp;, or is || and not is an alias for !</li>
+<li>In <em>while, if/else</em> and <em>switch/when</em> statements the then keyword can be used to keep the body on the same line</li>
+<li>Alias for boolean <em>true</em> is <em>on</em> and <em>yes</em> (as in YAML)</li>
+<li>Alias for boolean <em>false</em> is <em>off</em> and <em>no</em></li>
+<li>For single-line statements, unless can be used as the inverse of if</li>
+<li>Use <span class="citation">@property</span> or <span class="citation">@method</span> instead of this.something</li>
+<li>Use <em>in</em> to test for array presence</li>
+<li>Use <em>of</em> to test for object-key presence <!-- EYE* elaborate --></li>
+</ul>
+<h1 id="existentialclassesoperator"><a href="#existentialclassesoperator">ExistentialClasses,Operator <a href="#TOC">^</a></a></h1>
+<ul>
+<li>Use the existential operator ? to check if a variable exists. ? returns true unless a variable is null or undefined</li>
+<li>Use ?= for safer conditional assignment than ||= with numbers or strings</li>
+<li>The accessor variant of the existential operator ?. can be used to soak up null references in a chain of properties</li>
+<li>Use ?. instead of the dot accessor . in cases where the base value may be null or undefined. If all of the properties exist then the expected result is returned, if the chain is broken, then undefined is returned instead</li>
+</ul>
+<h1 id="inheritance-and-super"><a href="#inheritance-and-super">Inheritance, and Super <a href="#TOC">^</a></a></h1>
+<ul>
+<li>Object orientation as in most other object oriented languages</li>
+<li>The class structure allows to name the class, set the superclass with extends, assign prototypal properties, and define a constructor, in a single assignable expression</li>
+<li>Constructor functions are named as the class name, to support reflection</li>
+<li>Lower level operators: The extends operator helps with proper prototype setup. :: gives access to an object’s prototype. super() calls the immediate ancestor’s method of the same name</li>
+<li>A class definition is a block of executable code, which may be used for meta programming.</li>
+<li>In the context of a class definition, this is the class object itself (the constructor function), so static properties can be assigned by using <span class="citation">@property</span>: value, and functions defined in parent classes can be called with: <span class="citation">@inheritedMethodName</span>()</li>
+</ul>
+<h1 id="destructuring-assignment"><a href="#destructuring-assignment">Destructuring Assignment <a href="#TOC">^</a></a></h1>
+<ul>
+<li>To make extracting values from complex arrays and objects convenient, CoffeeScript implements destructuring assignment</li>
+<li>When assigning an array or object literal to a value, CoffeeScript breaks up and matches both sides against each other, assigning the values on the right to the variables on the left</li>
+<li>The simplest case is parallel assignment [a,b] = [b,a]</li>
+<li>It can be used with functions that return multiple values</li>
+<li>It can be used with any depth of array and object nesting to get deeply nested properties and can be combined with splats</li>
+</ul>
+<h1 id="function-binding"><a href="#function-binding">Function binding <a href="#TOC">^</a></a></h1>
+<ul>
+<li>The fat arrow =&gt; can be used to define a function and bind it to the current value of <em>this</em></li>
+<li>This is helpful when using callback-based libraries, for creating iterator functions to pass to each or event-handler functions to use with <em>bind</em></li>
+<li>Functions created with =&gt; are able to access properties of the this where they are defined</li>
+</ul>
+<h1 id="switchwhenelse"><a href="#switchwhenelse">Switch/When/Else <a href="#TOC">^</a></a></h1>
+<ul>
+<li>The switch statement do not need a break after every case</li>
+<li>A switch is a returnable, assignable expression</li>
+<li>The format is: switch condition, when clauses, else the default case</li>
+<li>Multiple values, comma separated, can be given for each when clause. If any of the values match, the clause runs</li>
+</ul>
+<h1 id="string-interpolation-heredocs-and-block-comments"><a href="#string-interpolation-heredocs-and-block-comments">String Interpolation, Heredocs, and Block Comments <a href="#TOC">^</a></a></h1>
+<ul>
+<li>Single-quoted strings are literal. Use backslash for escape characters</li>
+<li>Double-quoted strings allow for inter polated values, using #{ … }</li>
+<li>Multiline strings are allowed</li>
+<li>A heredoc ‘’’ can be used for formatted or indentation-sensitive text (or to avoid escaping quotes and apostrophes)</li>
+<li>The indentation level that begins a heredoc is maintained throughout, so the text can be aligned with the body of the code</li>
+<li>Double-quoted heredocs “”&quot; allow for interpolation</li>
+<li>Block comments ### are similar to heredocs, and are preserved in the generated code</li>
+</ul>
+<h1 id="extended-regular-expressions"><a href="#extended-regular-expressions">Extended Regular Expressions <a href="#TOC">^</a></a></h1>
+<ul>
+<li>Extended regular expressions are delimited by /// and are similar to heredocs and block comments.</li>
+<li>They ignore internal whitespace and can contain comments</li>
+</ul>
+<h1 id="aliases"><a href="#aliases">Aliases <a href="#TOC">^</a></a></h1>
+<blockquote>
+<p>and : &amp;&amp;<br />or : ||<br />not : !<br />is : ==<br />isnt : !=<br />yes : true<br />no : false<br />on : true<br />off : false</p>
+</blockquote>
+<p>See <a href="http://autotelicum.github.com/Smooth-CoffeeScript/">Smooth CoffeeScript Interactive Book</a><br />also see <a href="http://eloquentjavascript.net/">Interactive Eloquent Javascript</a><br /><a id="ref1" /> <a href="http://autotelicum.github.io/Smooth-CoffeeScript/CoffeeScript%20Quick%20Ref.pdf">[1] CoffeeScript Quick Ref.pdf</a></p>
+</body>
+</html>

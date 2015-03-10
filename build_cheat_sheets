@@ -1,0 +1,22 @@
+#!/usr/bin/env bash 
+# to get a numbered table of contents add: --number-sections
+#
+pdpath="./PANDOC" 
+
+# Coffee script cheat-sheet
+name=coffee_quick
+pandoc -s -S --toc --toc-depth=3 -c $pdpath/pandoc.css --template="$pdpath/default.html5" ./$name.pan -o ./$name.html
+
+# git cheat-sheet
+name=git_cheat_sheet
+pandoc -s -S --toc --toc-depth=3 -c $pdpath/pandoc.css --template="$pdpath/default.html5" ./$name.pan -o ./$name.html
+
+# cheat-sheet index page
+name=cheat_sheets
+pandoc -s -S -c $pdpath/pandoc.css --template="$pdpath/default.html5" ./$name.pan -o ./$name.html; 
+
+# In unix you might do this:
+# xdg-open ./$name.html
+# In MAC-land you might do this:
+# open ./$name.html
+#

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Marcelo Siero, with addtional acreditation. 1">
+  <title>Cheat Sheet for Git: Distributed Version Control System.</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" href="./PANDOC/pandoc.css">
+</head>
+<body>
+<header>
+<h1 class="title">Cheat Sheet for Git: Distributed Version Control System.</h1>
+<h2 class="author">Marcelo Siero, with addtional acreditation. <a href="#credits">1</a></h2>
+<h3 class="date">March 5, 2015</h3>
+</header>
+<nav id="TOC">
+<ul>
+<li><a href="#create-git-repository">Create Git Repository <a href="#TOC">^</a></a><ul>
+<li><a href="#from-existing-directory">From existing direct­ory <a href="#TOC">^</a></a></li>
+<li><a href="#from-other-repository">From other reposi­tory <a href="#TOC">^</a></a></li>
+</ul></li>
+<li><a href="#git---local-change">Git - Local Change <a href="#TOC">^</a></a><ul>
+<li><a href="#changed-in-working-directory">Changed in working direct­ory <a href="#TOC">^</a></a></li>
+<li><a href="#tracked-file-changes">Tracked file changes <a href="#TOC">^</a></a></li>
+<li><a href="#add-changed-files">Add changed files <a href="#TOC">^</a></a></li>
+<li><a href="#remove-file">Remove file <a href="#TOC">^</a></a></li>
+<li><a href="#see-files-ready-for-commit">See files ready for commit <a href="#TOC">^</a></a></li>
+<li><a href="#commit-changes">Commit changes <a href="#TOC">^</a></a></li>
+<li><a href="#change-last-commit">Change last commit <a href="#TOC">^</a></a></li>
+<li><a href="#revert-changes-to-file">Revert changes to file <a href="#TOC">^</a></a></li>
+<li><a href="#revert-changes-new-commit">Revert changes (new commit) <a href="#TOC">^</a></a></li>
+<li><a href="#return-to-last-committed-state">Return to last committed state <a href="#TOC">^</a></a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="create-git-repository"><a href="#create-git-repository">Create Git Repository <a href="#TOC">^</a></a></h1>
+<h2 id="from-existing-directory"><a href="#from-existing-directory">From existing direct­ory <a href="#TOC">^</a></a></h2>
+<blockquote>
+<p>cd proje­ct_dir<br />git init<br />git add .</p>
+</blockquote>
+<h2 id="from-other-repository"><a href="#from-other-repository">From other reposi­tory <a href="#TOC">^</a></a></h2>
+<blockquote>
+<p>git clone exist­ing­<em>dir new</em>dir<br />git clone git:/­/gi­thu­b.c­om/­use­r/r­epo.git<br />git clone https­://­git­hub.co­m/u­ser­/re­po.git</p>
+</blockquote>
+<h1 id="git---local-change"><a href="#git---local-change">Git - Local Change <a href="#TOC">^</a></a></h1>
+<h2 id="changed-in-working-directory"><a href="#changed-in-working-directory">Changed in working direct­ory <a href="#TOC">^</a></a></h2>
+<blockquote>
+<p>git status</p>
+</blockquote>
+<h2 id="tracked-file-changes"><a href="#tracked-file-changes">Tracked file changes <a href="#TOC">^</a></a></h2>
+<blockquote>
+<p>git diff</p>
+</blockquote>
+<h2 id="add-changed-files"><a href="#add-changed-files">Add changed files <a href="#TOC">^</a></a></h2>
+<blockquote>
+<p>git add file1 file2 file3</p>
+</blockquote>
+<h2 id="remove-file"><a href="#remove-file">Remove file <a href="#TOC">^</a></a></h2>
+<blockquote>
+<p>git rm file<br />git rm dir/ -r # (recu­rsive under direct­ory)</p>
+</blockquote>
+<h2 id="see-files-ready-for-commit"><a href="#see-files-ready-for-commit">See files ready for commit <a href="#TOC">^</a></a></h2>
+<blockquote>
+<p>git diff –cached</p>
+</blockquote>
+<h2 id="commit-changes"><a href="#commit-changes">Commit changes <a href="#TOC">^</a></a></h2>
+<blockquote>
+<p>git commit<br />git commit -m “My messag­e”<br />git commit -a -m “My Messag­e” # (tracked files only, auto add)</p>
+</blockquote>
+<h2 id="change-last-commit"><a href="#change-last-commit">Change last commit <a href="#TOC">^</a></a></h2>
+<blockquote>
+<p>git commit –amend</p>
+</blockquote>
+<h2 id="revert-changes-to-file"><a href="#revert-changes-to-file">Revert changes to file <a href="#TOC">^</a></a></h2>
+<blockquote>
+<p>git checkout – file</p>
+</blockquote>
+<h2 id="revert-changes-new-commit"><a href="#revert-changes-new-commit">Revert changes (new commit) <a href="#TOC">^</a></a></h2>
+<blockquote>
+<p>git revert HEAD</p>
+</blockquote>
+<h2 id="return-to-last-committed-state"><a href="#return-to-last-committed-state">Return to last committed state <a href="#TOC">^</a></a></h2>
+<blockquote>
+<p>git reset –hard HEAD</p>
+</blockquote>
+<p><br> <a name="credits"> <strong>CREDITS:</strong> This is based on cheat-sheets from the following websites:<br />http://www.cheatography.com/samcollett/cheat-sheets/git/<br />https://github.com/AlexZeitler/gitcheatsheet<br />and http://www.git-tower.com/files/cheatsheet/Git_Cheat_Sheet_grey.pdf </a></p>
+</body>
+</html>
